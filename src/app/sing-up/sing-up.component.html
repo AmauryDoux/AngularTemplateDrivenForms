@@ -1,0 +1,42 @@
+<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">
+    <div>
+      <label for="firstName-user">First name: </label>
+      <input name="firstName-user" type="text" [(ngModel)]="model.firstName" #firstName="ngModel" required minlength="3" maxlength="15">
+    </div>
+    <div *ngIf="myForm.submitted && firstName.errors">
+      <span *ngIf="firstName.errors?.required">The first name is required</span>
+      <span *ngIf="firstName.errors?.minlength">The max length should be bigger than 5</span>
+      <span *ngIf="firstName.errors?.maxlength">The min length should be lower than 30</span>
+    </div>
+
+    <div>
+        <label for="lastName-user">Last name: </label>
+        <input name="lastName-user" type="text" [(ngModel)]="model.lastName" #lastName="ngModel" required minlength="3" maxlength="15">
+      </div>
+      <div *ngIf="myForm.submitted && lastName.errors">
+        <span *ngIf="lastName.errors?.required">The last name is required</span>
+        <span *ngIf="lastName.errors?.minlength">The max length should be bigger than 5</span>
+        <span *ngIf="lastName.errors?.maxlength">The min length should be lower than 30</span>
+      </div>
+
+      <div>
+        <label for="mail-user">Email: </label>
+        <input name="mail-user" type="text" [(ngModel)]="model.mail" #mail="ngModel" required email>
+      </div>
+      <div *ngIf="myForm.submitted && mail.errors">
+        <span *ngIf="mail.errors.required">Email is required</span>
+        <span *ngIf="mail.errors.email">Email addres needs to be valid</span>
+      </div>
+
+      <div>
+        <label for="password-user">Password: </label>
+        <input name="password-user" type="password" [(ngModel)]="model.password" #password="ngModel" required>
+      </div>
+      <div *ngIf="myForm.submitted && password.errors">
+        <span *ngIf="password.errors.required">Password is required</span>
+      </div>
+    
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+  </form>
+  
